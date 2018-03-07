@@ -1,7 +1,6 @@
-import org.xml.sax.HandlerBase;
+import org.xml.sax.helpers.DefaultHandler;
 
-@SuppressWarnings("deprecation")
-public class SAXHandler extends HandlerBase {
+public class SAXHandler extends DefaultHandler {
 
 	public Graph getGraph() {
 		// TODO Auto-generated method stub
