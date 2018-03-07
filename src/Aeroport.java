@@ -7,6 +7,7 @@ public class Aeroport {
   private String nom;
   private String ville;
   private String pays;
+  private Coordonnees position;
   private Set<Vol> in;
   private Set<Vol> out;
 
@@ -19,5 +20,4 @@ public class Aeroport {
     in = new HashSet<>();
     out = new HashSet<>();
   }
-
 }
