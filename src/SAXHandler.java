@@ -21,7 +21,7 @@ public class SAXHandler extends DefaultHandler {
 			throws SAXException {
 
 		if (qName.equals("airport")) {
-			aeroport = new Aeroport();
+			aeroport = new Aeroport(qName, qName, qName, qName);
 			
 		} else if (qName.equals("route")) {
 			//System.out.println("Route : " + attributes.getLength());
