@@ -4,9 +4,9 @@ public class Vol {
   private Aeroport source;
   private Aeroport destination;
   private Compagnie compagnie;
-  private int distance;
+  private double distance;
 
-  public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, int distance) {
+  public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double distance) {
     super();
     this.source = source;
     this.destination = destination;
@@ -26,7 +26,7 @@ public class Vol {
     return compagnie;
   }
 
-  public int getDistance() {
+  public double getDistance() {
     return distance;
   }
 
