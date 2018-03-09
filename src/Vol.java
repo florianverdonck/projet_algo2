@@ -33,6 +33,12 @@ public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double di
     return distance;
   }
 
+@Override
+public String toString() {
+	return "Vol [source=" + source + ", destination=" + destination + ", compagnie=" + compagnie + ", distance="
+			+ distance + "]";
+}
+
 
 
 }

@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 import org.w3c.dom.Node;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -9,9 +11,12 @@ public class SAXHandler extends DefaultHandler {
 	 private String node = null;
 	 
 	 private Aeroport aeroport;
-	 private Vol vol;
 	 private Coordonnees coordonnees;
-	
+	 private Compagnie compagnie;
+	 private Vol vol;
+	 
+	 private Graph graph = new Graph();
+
 	/**
 	 * Redéfinition de la méthode pour intercepter les événements
 	 */ 
@@ -19,24 +24,54 @@ public class SAXHandler extends DefaultHandler {
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes)
 			throws SAXException {
+		
+		node = qName;
 
 		if (qName.equals("airport")) {
-			aeroport = new Aeroport(qName, qName, qName, qName);
+			
+			aeroport = new Aeroport(
+					attributes.getValue("iata"),
+					attributes.getValue("name"),
+					attributes.getValue("city"),
+					attributes.getValue("country"),
+					new Coordonnees()
+					);
+			
+		} else if (qName.equals("airline")) {
+			
+			compagnie = new Compagnie(attributes.getValue("iata"), attributes.getValue("country"), null);
 			
 		} else if (qName.equals("route")) {
-			//System.out.println("Route : " + attributes.getLength());
-		} else {
-			System.out.println("Non identifié : " + qName);
+			
+			Aeroport src = graph.aeroports.get(attributes.getValue("source"));
+			Aeroport dest = graph.aeroports.get(attributes.getValue("destination"));
+			Compagnie compagnie = graph.compagnies.get(attributes.getValue("airline"));
+			
+			vol = new Vol(src, dest, compagnie,-1.0);
+			
 		}
+		
 	}
 
 	public void endElement(String uri, String localName, String qName)
 	      throws SAXException{
-	  //System.out.println("Fin de l'élément " + qName);       
+		
+		if (qName.equals("airport")) {
+			
+			graph.aeroports.put(aeroport.getIata(), aeroport);
+			
+		} else if (qName.equals("airline")) {
+			
+			// DEPLACER COMPAGNIES DANS LE GRAPH
+			graph.compagnies.put(compagnie.getIata(), compagnie);
+			
+		} else if (qName.equals("route")) {
+			
+			graph.vols.add(vol);
+			
+		}
 	}
 	
-	
-
    //début du parsing
    public void startDocument() throws SAXException {
       System.out.println("Début du parsing");
@@ -44,11 +79,34 @@ public class SAXHandler extends DefaultHandler {
    //fin du parsing
    public void endDocument() throws SAXException {
       System.out.println("Fin du parsing");
-   }   
+   }  
 	
+   
+   /**
+    * permet de récupérer la valeur d'un nœud
+    */  
+   public void characters(char[] data, int start, int end){ 
+	   
+	   String str = new String(data, start, end);
+	   
+	   
+	   if (node != null) {
+		   if (node.equals("longitude")) {
+			   aeroport.getPosition().setLongitude(str);
+		   }
+		   else if (node.equals("latitude")) {
+			   aeroport.getPosition().setLatitude(str);
+		   }
+		   else if (node.equals("airline")) {
+			   compagnie.setNom(str);
+		   }
+		   node = null;
+	   }
+      
+   }
+   
 	public Graph getGraph() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.graph;
 	}
 
 }
