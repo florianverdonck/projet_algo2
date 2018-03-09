@@ -11,6 +11,10 @@ public class Aeroport {
   private Set<Vol> in;
   private Set<Vol> out;
 
+  public Aeroport() {
+	  super();
+  }
+  
   public Aeroport(String iata, String nom, String ville, String pays, Coordonnees position) {
     super();
     this.iata = iata;

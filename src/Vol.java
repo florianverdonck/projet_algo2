@@ -5,7 +5,11 @@ public class Vol {
   private Compagnie compagnie;
   private double distance;
 
-  public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double distance) {
+  public Vol() {
+	super();
+}
+
+public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double distance) {
     super();
     this.source = source;
     this.destination = destination;
