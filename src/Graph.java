@@ -24,7 +24,8 @@ public class Graph {
     aeroports.put(aero.getNom(), aero);
   }
 
-  public void calculerItineraireMiniminantDistance(String string, String string2, String string3) {
+  public void calculerItineraireMiniminantDistance(String source, String destination,
+      String fichier) {
     Map<String, Double> provisoire = new HashMap<>();
     Map<String, Double> definitif = new HashMap<>();
 
@@ -33,11 +34,14 @@ public class Graph {
       definitif.put(nom, null);
     }
 
+    aeroports.get(source).getOut();
+
 
 
   }
 
-  public void calculerItineraireMinimisantNombreVol(String string, String string2, String string3) {
+  public void calculerItineraireMinimisantNombreVol(String source, String destination,
+      String fichier) {
 
 
 
