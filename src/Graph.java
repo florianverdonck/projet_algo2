@@ -51,19 +51,18 @@ public class Graph {
     Deque<Aeroport> file = new ArrayDeque<>();
     Set<Aeroport> visites = new HashSet<>();
     Map<Aeroport, Vol> chemins = new HashMap<>();
-    Vol[] vols;
 
     Aeroport aSource = aeroports.get(source);
     Aeroport aDest;
 
     file.push(aSource);
-    chemins.put(aSource);
+    chemins.put(aSource, null);
 
     for (Aeroport a : file) {
       for (Vol vol : a.getOut()) {
         aDest = vol.getDestination();
         if (aDest.getNom().equals(destination)) {
-
+          chemin(chemins, aDest);
           break;
         }
         if (!visites.contains(aDest)) {
@@ -80,5 +79,13 @@ public class Graph {
 
 
 
+  }
+
+  private void chemin(Map<Aeroport, Vol> chemins, Aeroport dest) {
+    Vol vol = chemins.get(dest);
+    if (vol != null) {
+      System.out.println(vol);
+      chemin(chemins, vol.getSource());
+    }
   }
 }
