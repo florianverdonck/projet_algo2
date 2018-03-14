@@ -6,10 +6,10 @@ public class Vol {
   private double distance;
 
   public Vol() {
-	super();
-}
+    super();
+  }
 
-public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double distance) {
+  public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double distance) {
     super();
     this.source = source;
     this.destination = destination;
@@ -33,11 +33,11 @@ public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double di
     return distance;
   }
 
-@Override
-public String toString() {
-	return "Vol [source=" + source + ", destination=" + destination + ", compagnie=" + compagnie + ", distance="
-			+ distance + "]";
-}
+  @Override
+  public String toString() {
+    return "Vol [source=" + source + ", destination=" + destination + ", compagnie=" + compagnie
+        + ", distance=" + distance + "]";
+  }
 
 
 

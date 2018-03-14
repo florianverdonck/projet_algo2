@@ -8,13 +8,12 @@ public class Aeroport {
   private String ville;
   private String pays;
   private Coordonnees position;
-  private Set<Vol> in;
   private Set<Vol> out;
 
   public Aeroport() {
-	  super();
+    super();
   }
-  
+
   public Aeroport(String iata, String nom, String ville, String pays, Coordonnees position) {
     super();
     this.iata = iata;
@@ -49,11 +48,11 @@ public class Aeroport {
     return out;
   }
 
-@Override
-public String toString() {
-	return "Aeroport [iata=" + iata + ", nom=" + nom + ", ville=" + ville + ", pays=" + pays + ", position=" + position
-			+ ", in=" + in + ", out=" + out + "]";
-}
+  @Override
+  public String toString() {
+    return "Aeroport [iata=" + iata + ", nom=" + nom + ", ville=" + ville + ", pays=" + pays
+        + ", position=" + position + "]";
+  }
 
 
 

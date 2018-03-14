@@ -25,22 +25,43 @@ public class Graph {
 
   public void ajouterAeroport(Aeroport aero) {
     Util.checkObject(aero);
-    aeroports.put(aero.getNom(), aero);
+    aeroports.put(aero.getIata(), aero);
+  }
+
+  public void ajouterCompagnie(Compagnie comp) {
+    compagnies.put(comp.getIata(), comp);
+  }
+
+  public Aeroport getAeroport(String iata) {
+    return aeroports.get(iata);
+  }
+
+  public Compagnie getCompagnie(String iata) {
+    return compagnies.get(iata);
+  }
+
+  public void afficher() {
+    int cpt = 0;
+    for (Aeroport aero : aeroports.values()) {
+      System.out.println(aero.toString());
+      cpt++;
+    }
+    System.out.println(cpt);
   }
 
   public void calculerItineraireMiniminantDistance(String source, String destination,
       String fichier) {
-    Map<String, Double> provisoire = new HashMap<>();
-    Map<String, Double> definitif = new HashMap<>();
-
-    for (String nom : aeroports.keySet()) {
-      provisoire.put(nom, null);
-      definitif.put(nom, null);
-    }
-
-    for (Vol vol : aeroports.get(source).getOut()) {
-
-    }
+    /*
+     * Map<String, Double> provisoire = new HashMap<>(); Map<String, Double> definitif = new
+     * HashMap<>();
+     * 
+     * for (String iata : aeroports.keySet()) { provisoire.put(iata, null); definitif.put(iata,
+     * null); }
+     * 
+     * for (Vol vol : aeroports.get(source).getOut()) {
+     * 
+     * }
+     */
 
 
 
@@ -61,9 +82,11 @@ public class Graph {
     for (Aeroport a : file) {
       for (Vol vol : a.getOut()) {
         aDest = vol.getDestination();
-        if (aDest.getNom().equals(destination)) {
+        System.out.println(aDest.getIata());
+        if (aDest.getIata().equals(destination)) {
+          System.out.println("debut chemin");
           chemin(chemins, aDest);
-          break;
+          return;
         }
         if (!visites.contains(aDest)) {
           file.addLast(aDest);
@@ -71,11 +94,8 @@ public class Graph {
           chemins.put(aDest, vol);
         }
       }
-      file.removeFirst();
     }
-
-    if (file.isEmpty())
-      throw new PasDeVolException();
+    throw new PasDeVolException();
 
 
 

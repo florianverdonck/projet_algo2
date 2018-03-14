@@ -1,40 +1,40 @@
 
 public class Coordonnees {
 
-	private String latitude;
-	private String longitude;
-	
-	public Coordonnees() {
-		super();
-	}
+  private double latitude;
+  private double longitude;
 
-	public Coordonnees(String latitude, String longitude) {
-		super();
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
+  public Coordonnees() {
+    super();
+  }
 
-	public String getLatitude() {
-		return latitude;
-	}
+  public Coordonnees(double latitude, double longitude) {
+    super();
+    this.latitude = latitude;
+    this.longitude = longitude;
+  }
 
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
+  public double getLatitude() {
+    return latitude;
+  }
 
-	public String getLongitude() {
-		return longitude;
-	}
+  public void setLatitude(double latitude) {
+    this.latitude = latitude;
+  }
 
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
+  public double getLongitude() {
+    return longitude;
+  }
 
-	@Override
-	public String toString() {
-		return "Coordonnees [latitude=" + latitude + ", longitude=" + longitude + "]";
-	}
-	
-	
-	
+  public void setLongitude(double longitude) {
+    this.longitude = longitude;
+  }
+
+  @Override
+  public String toString() {
+    return "Coordonnees [latitude=" + latitude + ", longitude=" + longitude + "]";
+  }
+
+
+
 }
