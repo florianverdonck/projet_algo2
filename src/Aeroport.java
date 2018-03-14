@@ -8,7 +8,6 @@ public class Aeroport {
   private String ville;
   private String pays;
   private Coordonnees position;
-  private Set<Vol> in;
   private Set<Vol> out;
 
   public Aeroport() {
@@ -22,7 +21,7 @@ public class Aeroport {
     this.ville = ville;
     this.pays = pays;
     this.position = position;
-    out = new HashSet<>();
+    this.out = new HashSet<Vol>();
   }
 
   public String getIata() {
@@ -52,9 +51,11 @@ public class Aeroport {
 @Override
 public String toString() {
 	return "Aeroport [iata=" + iata + ", nom=" + nom + ", ville=" + ville + ", pays=" + pays + ", position=" + position
-			+ ", in=" + in + ", out=" + out + "]";
+			+ ", out=" + out + "]";
 }
 
 
 
+  
+  
 }

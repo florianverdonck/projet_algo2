@@ -9,7 +9,7 @@ public class Vol {
 	super();
 }
 
-public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double distance) {
+  public Vol(Aeroport source, Aeroport destination, Compagnie compagnie, double distance) {
     super();
     this.source = source;
     this.destination = destination;
@@ -38,7 +38,6 @@ public String toString() {
 	return "Vol [source=" + source + ", destination=" + destination + ", compagnie=" + compagnie + ", distance="
 			+ distance + "]";
 }
-
 
 
 }
