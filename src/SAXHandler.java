@@ -69,6 +69,11 @@ public class SAXHandler extends DefaultHandler {
 			
 			graph.vols.add(vol);
 			
+			// Ajouter ce vol dans OUT de sa source
+			
+			graph.aeroports.get(vol.getSource().getIata()).getOut().add(vol);
+			
+			
 		}
 	}
 	
