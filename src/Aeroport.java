@@ -21,7 +21,7 @@ public class Aeroport {
     this.ville = ville;
     this.pays = pays;
     this.position = position;
-    out = new HashSet<>();
+    this.out = new HashSet<Vol>();
   }
 
   public String getIata() {
@@ -51,7 +51,7 @@ public class Aeroport {
   @Override
   public String toString() {
     return "Aeroport [iata=" + iata + ", nom=" + nom + ", ville=" + ville + ", pays=" + pays
-        + ", position=" + position + "]";
+        + ", position=" + position + ", out=" + out + "]";
   }
 
 
