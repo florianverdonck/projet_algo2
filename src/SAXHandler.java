@@ -37,9 +37,12 @@ public class SAXHandler extends DefaultHandler {
       Aeroport dest = graph.getAeroport(attributes.getValue("destination"));
       Compagnie compagnie = graph.getCompagnie(attributes.getValue("airline"));
 
-      graph.ajouterVol(new Vol(src, dest, compagnie,
+      Vol vol = new Vol(src, dest, compagnie,
           Util.distance(src.getPosition().getLatitude(), src.getPosition().getLongitude(),
-              dest.getPosition().getLatitude(), dest.getPosition().getLongitude())));
+              dest.getPosition().getLatitude(), dest.getPosition().getLongitude()));
+
+      graph.ajouterVol(vol);
+      graph.getAeroport(src.getIata()).getOut().add(vol);
 
     }
 
@@ -77,7 +80,6 @@ public class SAXHandler extends DefaultHandler {
   // fin du parsing
   public void endDocument() throws SAXException {
     System.out.println("Fin du parsing");
-    graph.afficher();
   }
 
 
@@ -97,7 +99,6 @@ public class SAXHandler extends DefaultHandler {
         graph.getCompagnie(iata).setNom(str);
       }
       node = null;
-      iata = null;
     }
 
   }

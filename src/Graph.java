@@ -51,17 +51,8 @@ public class Graph {
 
   public void calculerItineraireMiniminantDistance(String source, String destination,
       String fichier) {
-    /*
-     * Map<String, Double> provisoire = new HashMap<>(); Map<String, Double> definitif = new
-     * HashMap<>();
-     * 
-     * for (String iata : aeroports.keySet()) { provisoire.put(iata, null); definitif.put(iata,
-     * null); }
-     * 
-     * for (Vol vol : aeroports.get(source).getOut()) {
-     * 
-     * }
-     */
+    Map<Aeroport, Double> provisoire = new HashMap<>();
+    Map<Aeroport, Double> definitif = new HashMap<>();
 
 
 
@@ -77,22 +68,22 @@ public class Graph {
     Aeroport aDest;
 
     file.push(aSource);
+    visites.add(aSource);
     chemins.put(aSource, null);
 
-    for (Aeroport a : file) {
-      for (Vol vol : a.getOut()) {
+
+    while (file.size() > 0) {
+      for (Vol vol : file.removeFirst().getOut()) {
         aDest = vol.getDestination();
-        System.out.println(aDest.getIata());
+        if (visites.add(aDest)) {
+          file.addLast(aDest);
+          chemins.put(aDest, vol);
+        }
         if (aDest.getIata().equals(destination)) {
-          System.out.println("debut chemin");
           chemin(chemins, aDest);
           return;
         }
-        if (!visites.contains(aDest)) {
-          file.addLast(aDest);
-          visites.add(aDest);
-          chemins.put(aDest, vol);
-        }
+
       }
     }
     throw new PasDeVolException();
@@ -102,9 +93,10 @@ public class Graph {
   }
 
   private void chemin(Map<Aeroport, Vol> chemins, Aeroport dest) {
+
     Vol vol = chemins.get(dest);
     if (vol != null) {
-      System.out.println(vol);
+      System.out.println(vol.getSource().getIata() + " " + vol.getDestination().getIata());
       chemin(chemins, vol.getSource());
     }
   }
