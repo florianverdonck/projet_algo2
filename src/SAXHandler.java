@@ -73,11 +73,13 @@ public class SAXHandler extends DefaultHandler {
    */
 
   // début du parsing
+  @Override
   public void startDocument() throws SAXException {
     System.out.println("Début du parsing");
   }
 
   // fin du parsing
+  @Override
   public void endDocument() throws SAXException {
     System.out.println("Fin du parsing");
   }
@@ -86,6 +88,7 @@ public class SAXHandler extends DefaultHandler {
   /**
    * permet de récupérer la valeur d'un nœud
    */
+  @Override
   public void characters(char[] data, int start, int end) {
 
     String str = new String(data, start, end);
