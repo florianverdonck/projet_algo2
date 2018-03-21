@@ -9,6 +9,8 @@ public class Aeroport {
   private String pays;
   private Coordonnees position;
   private Set<Vol> out;
+  private double cout;
+  private Vol volArrivee;
 
   public Aeroport() {
     super();
@@ -22,6 +24,7 @@ public class Aeroport {
     this.pays = pays;
     this.position = position;
     this.out = new HashSet<Vol>();
+    this.cout = Double.MAX_VALUE;
   }
 
   public String getIata() {
@@ -54,6 +57,20 @@ public class Aeroport {
         + ", position=" + position + "]";
   }
 
+  public double getCout() {
+    return cout;
+  }
 
+  public void setCout(double cout) {
+    this.cout = cout;
+  }
+
+  public Vol getVolArrivee() {
+    return volArrivee;
+  }
+
+  public void setVolArrivee(Vol volArrivee) {
+    this.volArrivee = volArrivee;
+  }
 
 }
